@@ -235,8 +235,12 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 		if a:bg != ""
 			exec "hi " . a:group . " guibg=#" . a:bg . " ctermbg=" . <SID>rgb(a:bg)
 		endif
-		if a:attr != ""
-			exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
+		let l:attr = a:attr
+		if a:attr == "" || a:attr == "none"
+			let l:attr = "bold"
+		endif
+		if a:attr != "" || l:attr != ""
+			exec "hi " . a:group . " gui=" . l:attr . " cterm=" . l:attr
 		endif
 	endfun
 
